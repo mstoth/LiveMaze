@@ -25,6 +25,10 @@ class MazeTests(unittest.TestCase):
     def testMatrixSize(self):
         self.assertTrue(len(self.m.matrix) == SIZE / 20)
 
+    def testReset(self):
+        self.m.reset()
+        self.assertTrue(self.m.turtle.pos() == (-(SIZE / 2 - 10), SIZE / 2 - 10))
+
 
 if __name__ == "__main__":
     unittest.main()
