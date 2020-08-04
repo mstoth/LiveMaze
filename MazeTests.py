@@ -4,6 +4,11 @@ from Maze import Maze
 
 SIZE = 400
 
+EAST = 0
+NORTH = 1
+WEST = 2
+SOUTH = 3
+
 
 class MazeTests(unittest.TestCase):
     def setUp(self):
@@ -27,7 +32,15 @@ class MazeTests(unittest.TestCase):
 
     def testReset(self):
         self.m.reset()
-        self.assertTrue(self.m.turtle.pos() == (-(SIZE / 2 - 10), SIZE / 2 - 10))
+        self.assertTrue(self.m.turtle.pos() == (-(SIZE / 2 - 20), SIZE / 2 - 20))
+
+    def testSettingMatrixValues(self):
+        self.m.reset()
+        value = self.m.getMatrixValueAt(self.m.turtle.position)
+        self.assertTrue(0 == value)
+        value = 1
+        self.m.setMatrixValueAt(m.turtle.position, value)
+        self.assertEqual(self.m.matrix[0][0], 1)
 
 
 if __name__ == "__main__":
