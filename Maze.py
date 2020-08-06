@@ -17,6 +17,7 @@ class Maze:
     def reset(self):
         self.s = turtle.Screen()
         self.turtle = turtle.Turtle()
+        self.turtle.penup()
         self.s.setup(width=SIZE*1.3, height=SIZE*1.3)
         self.turtle.goto(-(SIZE / 2 - 20), SIZE / 2 - 20)
         self.matrix = [[1 for i in range(int(SIZE / 20))] for i in range(int(SIZE / 20))]
@@ -67,4 +68,11 @@ class Maze:
             self.matrix[y][x] = value
         except:
             return False
+        if value == 0:
+            self.turtle.color('white')
+            self.turtle.stamp()
+        if value == 1:
+            self.turtle.color('blue')
+            self.turtle.stamp()
         return True
+
