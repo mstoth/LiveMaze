@@ -34,13 +34,39 @@ class MazeTests(unittest.TestCase):
         self.m.reset()
         self.assertTrue(self.m.turtle.pos() == (-(SIZE / 2 - 20), SIZE / 2 - 20))
 
+    def testCoordinates(self):
+        self.m.turtle.goto(-180,180)
+        self.m.turtle.stamp()
+        self.m.turtle.goto(-180, 200)
+        self.m.turtle.stamp()
+        self.m.turtle.goto(200,-180)
+        self.m.turtle.stamp()
+        self.m.turtle.goto(200,200)
+        self.m.turtle.stamp()
+        self.assertTrue((0,0) == self.m.pos2index((-180,180)),f"{self.m.pos2index((-180,180))}")
+        self.assertTrue((19,19) == self.m.pos2index((200,-200)),f"{self.m.pos2index((200,-200))}")
+
+
     def testSettingMatrixValues(self):
         self.m.reset()
-        value = self.m.getMatrixValueAt(self.m.turtle.position)
+        value = self.m.getMatrixValueAt(self.m.turtle.position())
         self.assertTrue(0 == value)
         value = 1
-        self.m.setMatrixValueAt(m.turtle.position, value)
+        self.m.setMatrixValueAt(self.m.turtle.position(),value)
         self.assertEqual(self.m.matrix[0][0], 1)
+        self.m.turtle.goto(-160,180)
+        value = self.m.getMatrixValueAt(self.m.turtle.position())
+        self.assertTrue(1 == value)
+        value = 0
+        self.m.setMatrixValueAt(self.m.turtle.position(),value)
+        self.assertEqual(self.m.matrix[0][1], 0)
+        self.m.turtle.goto(200,-200)
+        value = self.m.getMatrixValueAt(self.m.turtle.position())
+        self.assertTrue(1 == value)
+        value = 0
+        self.m.setMatrixValueAt(self.m.turtle.position(),value)
+        self.assertTrue(0 == value)
+
 
 
 if __name__ == "__main__":
